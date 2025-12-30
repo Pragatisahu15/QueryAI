@@ -1,0 +1,222 @@
+/* ---------- Sidebar container ---------- */
+.sidebar {
+    background-color: #171717;
+    color: #b4b4b4;
+
+    height: 100vh;
+    width: 250px;
+
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---------- New Chat button ---------- */
+button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 10px;
+    padding: 10px;
+
+    border-radius: 6px;
+    background-color: transparent;
+    border: 0.5px solid rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.logo {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #fff;
+}
+
+button span {
+    font-size: 18px;
+}
+
+/* ---------- History list ---------- */
+.history {
+    flex: 1;
+    /* takes remaining height */
+    margin: 6px;
+    padding: 4px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Scrollbar */
+.history::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Dark theme sidebar scrollbar */
+.history::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* Light theme sidebar scrollbar */
+.sidebar.light .history::-webkit-scrollbar-thumb {
+    background: rgba(15, 23, 42, 0.25);
+}
+
+
+/* ---------- History item ---------- */
+.history li {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 6px 8px;
+    margin-bottom: 4px;
+
+    font-size: 13.5px;
+    cursor: pointer;
+
+    overflow: hidden;
+    border: solid 5px transparent;
+}
+
+.history li:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+/* ---------- Thread title (GPT-style truncation) ---------- */
+/* 🔑 This fixes long titles without changing layout */
+.thread-title {
+    display: block;
+
+    max-width: 100%;
+
+    white-space: nowrap;
+    /* single line like GPT */
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    word-break: break-word;
+    /* breaks nonsense long strings */
+}
+
+
+/* ---------- Delete icon ---------- */
+.fa-trash {
+    margin-left: auto;
+    flex-shrink: 0;
+
+    opacity: 0;
+    font-size: 13px;
+    color: #9ca3af;
+
+    transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.history li:hover .fa-trash {
+    opacity: 1;
+}
+
+.fa-trash:hover {
+    color: #f87171 !important;
+}
+
+.highlighted {
+    background-color: rgba(180, 180, 180, 0.05);
+    border-radius: 10px;
+}
+
+/* ---------- Footer ---------- */
+.sign {
+    margin: 10px;
+    padding: 10px;
+
+    font-size: 13px;
+    text-align: center;
+
+    border-top: 0.5px solid rgba(255, 255, 255, 0.4);
+}
+
+/* ---------- Mobile sidebar behavior ---------- */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        height: 100vh;
+        z-index: 1000;
+
+        transform: translateX(-100%);
+        transition: transform 0.25s ease-in-out;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+}
+
+/* ========================= */
+/* LIGHT THEME SIDEBAR */
+/* ========================= */
+
+.sidebar.light {
+    background-color: #f9fafb;
+    color: #111827;
+}
+
+.sidebar.light li,
+.sidebar.light .thread-title,
+.sidebar.light p {
+    color: #111827;
+}
+
+.sidebar.light button {
+    border: 1px solid #d1d5db;
+    color: #111827;
+}
+
+.sidebar.light button:hover {
+    background-color: #e5e7eb;
+}
+
+.sidebar.light .history li:hover {
+    background-color: #e5e7eb;
+}
+
+.sidebar.light .highlighted {
+    background-color: #e5e7eb;
+}
+
+.sidebar.light .sign {
+    border-top: 1px solid #d1d5db;
+    color: #374151;
+}
+
+.sidebar.light .fa-trash {
+    color: #6b7280;
+}
+
+/* Light theme button clarity */
+.sidebar.light button,
+.sidebar.light button i {
+    color: #0f172a;
+    opacity: 1;
+}
+
+/* Red heart in light theme */
+/* .sidebar.light .heart {
+    color: #ef4444;
+} */
+
+.sidebar.light .sign .fa-heart {
+    color: #ef4444;
+}
