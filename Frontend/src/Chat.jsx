@@ -36,15 +36,6 @@ function Chat() {
 
     }, [prevChats, reply]);
 
-    const isCodeBlock = (text) => {
-        return (
-            text.includes("\n") ||
-            text.includes("{") ||
-            text.includes("}") ||
-            text.includes(";")
-        );
-    };
-
 
     return (
         <>
