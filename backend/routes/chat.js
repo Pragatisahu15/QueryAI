@@ -75,36 +75,44 @@ router.post("/chat", async (req, res) => {
     }
 
     try {
+        // 1️⃣ Get AI response FIRST (independent of DB)
+        const assistantReply = await getGroqAPIresponses(message);
+
+        // 2️⃣ Send response immediately (VERY IMPORTANT)
+        res.json({ reply: assistantReply });
+
+        // 3️⃣ DB work happens AFTER response (non-blocking)
         let thread = await Thread.findOne({ threadId });
 
-        if (!thread) { //if threadId doesn't exist in DB
-            //creating new thread in Db
+        if (!thread) {
             thread = new Thread({
                 threadId,
                 title: message,
-                messages: [{ role: "user", content: message }]
+                messages: [
+                    { role: "user", content: message },
+                    { role: "assistant", content: assistantReply }
+                ]
             });
         } else {
-            thread.messages.push({ role: "user", content: message });
+            thread.messages.push(
+                { role: "user", content: message },
+                { role: "assistant", content: assistantReply }
+            );
+            thread.updatedAt = new Date();
         }
 
-        const assistantReply = await getGroqAPIresponses(message);
-
-        thread.messages.push({
-            role: "assistant",
-            content: assistantReply
+        thread.save().catch(err => {
+            console.log("DB slow / skipped save:", err.message);
         });
-
-        thread.updatedAt = new Date();
-        await thread.save();
-
-        res.json({ reply: assistantReply });
 
     } catch (err) {
         console.log(err);
-        res.status(500).json({ error: "something went wrong" });
+
+        // If response already sent, do nothing
+        if (!res.headersSent) {
+            res.status(500).json({ error: "something went wrong" });
+        }
     }
 });
-
 
 export default router;
