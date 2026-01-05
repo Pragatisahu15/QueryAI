@@ -307,10 +307,6 @@ input:focus {
 
 }
 
-/* ========================= */
-/* CHAT WINDOW SCROLLBAR */
-/* ========================= */
-
 /* Base scrollbar */
 .chatWindow ::-webkit-scrollbar {
     width: 6px;
@@ -333,9 +329,7 @@ input:focus {
     border-radius: 8px;
 }
 
-/* modelItem css */
-
-/* ================= MODEL DROPDOWN (FINAL) ================= */
+/*  MODEL DROPDOWN (*/
 
 .queryWrapper {
     position: relative;
@@ -349,10 +343,10 @@ input:focus {
     left: 0;
 
     width: max-content;
-    /* 🔽 slightly reduced */
+
 
     background-color: #3a3a3a;
-    /* 🔆 lighter than #323232 */
+
     border-radius: 6px;
 
     z-index: 1000;
@@ -375,16 +369,13 @@ input:focus {
 .modelItem span {
     font-size: 0.78rem;
     line-height: 1;
-    /* color: #e5e7eb; */
     color: #9ca3af;
-    /* ✅ soft light gray (NOT white) */
 }
 
 .modelItem i {
     font-size: 0.55rem;
     margin-left: 8px;
     color: #9ca3af;
-    /* muted gray */
     opacity: 0.85;
 }
 
@@ -396,19 +387,13 @@ input:focus {
 
 /* Light theme */
 .chatWindow.light .modelDropdown {
-    /* background-color: #ffffff; */
     background-color: #f8fafc;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* .chatWindow.light .modelItem span,
-.chatWindow.light .modelItem i {
-    color: #111827;
-} */
 
 .chatWindow.light .modelItem span {
     color: #374151;
-    /* ✅ soft gray, not black */
 }
 
 .chatWindow.light .modelItem i {

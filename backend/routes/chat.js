@@ -75,13 +75,13 @@ router.post("/chat", async (req, res) => {
     }
 
     try {
-        // 1️⃣ Get AI response FIRST (independent of DB)
+        //  Get AI response FIRST (independent of DB)
         const assistantReply = await getGroqAPIresponses(message);
 
-        // 2️⃣ Send response immediately (VERY IMPORTANT)
+        //  Send response immediately (VERY IMPORTANT)
         res.json({ reply: assistantReply });
 
-        // 3️⃣ DB work happens AFTER response (non-blocking)
+        //  DB work happens AFTER response (non-blocking)
         let thread = await Thread.findOne({ threadId });
 
         if (!thread) {

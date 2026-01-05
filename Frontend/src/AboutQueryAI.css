@@ -8,7 +8,7 @@
     align-items: center;
 }
 
-/* ===== Modal ===== */
+/*  Modal */
 .aboutModal {
     position: relative;
     width: 100%;
@@ -20,7 +20,7 @@
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
 }
 
-/* ===== Close Button ===== */
+/*  Close Button  */
 .closeBtn {
     position: absolute;
     top: 14px;
@@ -36,7 +36,7 @@
     color: #ef4444;
 }
 
-/* ===== Typography ===== */
+/*  Typography  */
 .aboutModal h2 {
     margin-bottom: 10px;
 }
@@ -64,13 +64,13 @@
     opacity: 0.8;
 }
 
-/* ===== DARK THEME ===== */
+/*  DARK THEME  */
 .aboutModal.dark {
     background-color: #1f1f1f;
     color: #e5e7eb;
 }
 
-/* ===== LIGHT THEME ===== */
+/*  LIGHT THEME  */
 .aboutModal.light {
     background-color: #ffffff;
     color: #111827;
@@ -85,7 +85,7 @@
     color: #6b7280;
 }
 
-/* ===== Scrollbar (ChatGPT-style) ===== */
+/*  Scrollbar  */
 .aboutModal::-webkit-scrollbar {
     width: 4px;
 }
@@ -103,15 +103,12 @@
     background-color: rgba(100, 116, 139, 0.45);
 }
 
-/* ========================= */
-/* FINAL LIGHT THEME FIX */
-/* ========================= */
+/* LIGHT THEME  */
 
 .aboutModal.light h2,
 .aboutModal.light h3,
 .aboutModal.light strong,
 .aboutModal.light b {
     color: #0f172a;
-    /* darker heading tone */
     opacity: 1 !important;
 }

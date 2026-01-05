@@ -128,7 +128,6 @@ function ChatWindow() {
                 </div>
             </div>
 
-            {/* {showAbout && <AboutQueryAI onClose={() => setShowAbout(false)} />} */}
 
             {
                 showAbout && (
@@ -155,16 +154,11 @@ function ChatWindow() {
                         <i className={`fa-solid ${theme === "dark" ? "fa-toggle-off" : "fa-toggle-on"}`}></i>
                     </div>
 
-
-                    <div className="dropDownItem">Logout <i className="fa-solid fa-arrow-right-from-bracket"></i></div>
                 </div>
             }
 
             <Chat></Chat>
 
-            {/* <ScaleLoader color="#fff" loading={loading}>
-
-            </ScaleLoader > */}
 
             {
                 loading && (

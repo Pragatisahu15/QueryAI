@@ -94,12 +94,10 @@ function Sidebar() {
                 }
             </ul>
 
-
-
             <div className="sign">
-                {/* <p>Developed by Pragati <span className="heart">&hearts;</span> </p> */}
                 <p>Developed by Pragati <i className="fa-solid fa-heart"></i> </p>
             </div>
+
         </section>
     )
 }

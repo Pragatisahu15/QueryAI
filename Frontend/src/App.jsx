@@ -32,20 +32,12 @@ function App() {
     theme, setTheme
   };//passing values //created obj called providersValues
 
-  // return (
-  //   <div className='app'>
-  //     <MyContext.Provider value={providerValues}>
-  //       <Sidebar></Sidebar>
-  //       <ChatWindow></ChatWindow>
-  //     </MyContext.Provider>
-  //   </div>
-  // )
 
   return (
     <div className='app'>
       <MyContext.Provider value={providerValues}>
 
-        {/* 🔥 MOBILE OVERLAY */}
+        {/*MOBILE OVERLAY*/}
         {isSidebarOpen && (
           <div
             className="sidebar-overlay"
