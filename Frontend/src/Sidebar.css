@@ -38,6 +38,10 @@ button:hover {
     background: #fff;
 }
 
+.fa-comment-nodes {
+    font-size: 22px;
+}
+
 button span {
     font-size: 18px;
 }

@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const MessageSchema = new mongoose.Schema({
     role: {
         type: String,
-        enum: ["user", "assistant"], //fixed values
+        enum: ["user", "assistant"],
         required: true
     },
     content: {
@@ -37,5 +37,4 @@ const ThreadSchema = new mongoose.Schema({
     }
 });
 
-// export default mongoose.model("Tread", ThreadSchema);
 export default mongoose.model("Thread", ThreadSchema, "threads");

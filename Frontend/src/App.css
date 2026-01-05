@@ -1,7 +1,6 @@
 * {
     color: #ececec;
     font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
-    /* box-sizing: border-box; */
 }
 
 body {
@@ -12,11 +11,8 @@ body {
 .app {
     background-color: #212121;
     display: flex;
-    /* 🔑 important */
     height: 100vh;
-    /* 🔑 prevents double scroll */
     overflow: hidden;
-
 }
 
 .sidebar-overlay {
