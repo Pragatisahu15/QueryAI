@@ -72,7 +72,7 @@ function Sidebar() {
 
 
             <button onClick={createNewChat}>
-                <i class="fa-solid fa-comment-nodes"></i>
+                <i className="fa-solid fa-comment-nodes"></i>
 
                 <span> <i className="fa-solid fa-pen-to-square"></i> </span>
             </button>
