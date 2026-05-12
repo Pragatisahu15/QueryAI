@@ -1,6 +1,7 @@
 import express from "express";
 import Thread from "../models/Thread.js";
 import getGroqAPIresponses from "../utils/aiService.js";
+import authMiddleware from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -24,10 +25,10 @@ router.post("/test", async (req, res) => {
 });
 
 // GET ALL THREADS
-router.get("/thread", async (req, res) => {
+router.get("/thread", authMiddleware, async (req, res) => {
     try {
-        const threads = await Thread.find({}).sort({ updatedAt: -1 }); //-1 means data in descending order on the basis of this property
-        //descending order of updatedAt...most recent data on top
+        const threads = await Thread.find({userId: req.user.userId}).sort({ updatedAt: -1 }); // userId: req.user.userId: give ONLY logged-in user's threads
+        //-1 means data in descending order on the basis of this property //descending order of updatedAt...most recent data on top
         res.json(threads); //returning all threads
     } catch (err) {
         console.log(err);
@@ -36,10 +37,10 @@ router.get("/thread", async (req, res) => {
 });
 
 //GET SINGLE THREAD: get particular thread using threadId
-router.get("/thread/:threadId", async (req, res) => {
+router.get("/thread/:threadId",  authMiddleware, async (req, res) => {
     const { threadId } = req.params; //fething threadId from param
     try {
-        const thread = await Thread.findOne({ threadId }); //fething particular thread from all thread using Id; thread(means: sequence of chat)
+        const thread = await Thread.findOne({ threadId,  userId: req.user.userId }); //fething particular thread from all thread using Id; thread(means: sequence of chat) // userId: req.user.userId: find thread ONLY if it belongs to current user; thread IDs can leak, another user could access chats, now: threadId + userId both required(authentication alone is NOT enough You must also verify ownership)
         if (!thread) {
             res.status(404).json({ error: "Thread is not found" })
         }
@@ -51,10 +52,10 @@ router.get("/thread/:threadId", async (req, res) => {
 })
 
 // DELETE THREAD
-router.delete("/thread/:threadId", async (req, res) => {
+router.delete("/thread/:threadId",  authMiddleware, async (req, res) => {
     const { threadId } = req.params;
     try {
-        const deletedThread = await Thread.findOneAndDelete({ threadId });
+        const deletedThread = await Thread.findOneAndDelete({ threadId,  userId: req.user.userId }); // delete ONLY if current user owns thread
         if (!deletedThread) {
             res.status(404).json({ error: "Thread not found" })
         }
@@ -67,7 +68,7 @@ router.delete("/thread/:threadId", async (req, res) => {
 });
 
 // CHAT ROUTE 
-router.post("/chat", async (req, res) => {
+router.post("/chat",  authMiddleware, async (req, res) => {
     const { threadId, message } = req.body;
 
     if (!threadId || !message) {
@@ -86,6 +87,7 @@ router.post("/chat", async (req, res) => {
 
         if (!thread) {
             thread = new Thread({
+                userId: req.user.userId,
                 threadId,
                 title: message,
                 messages: [

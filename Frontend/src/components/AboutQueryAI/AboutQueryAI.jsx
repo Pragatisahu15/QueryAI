@@ -1,6 +1,6 @@
 import "./AboutQueryAI.css";
 import { useEffect } from "react";
-import { MyContext } from "./MyContext.jsx";
+import { MyContext } from "../../context/MyContext";
 import { useContext } from "react";
 
 function AboutQueryAI({ onClose }) {

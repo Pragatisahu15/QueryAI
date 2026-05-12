@@ -1,17 +1,27 @@
 import "./Sidebar.css";
 import { useContext, useEffect } from "react";
-import { MyContext } from "./MyContext.jsx";
+import { MyContext } from "../../context/MyContext.jsx";
 import { v1 as uuidv1 } from "uuid";
 
 function Sidebar() {
 
     const { allThreads, setAllThreads, currThreadId, setNewChat, setPrompt, setReply, setCurrThreadId, setPrevChats, isSidebarOpen,
-        setIsSidebarOpen, theme } = useContext(MyContext);
+        setIsSidebarOpen, theme, token } = useContext(MyContext);
 
     const getAllThreads = async () => { //getAllThreads through fetch call
         try {
-            const response = await fetch("https://queryai-backend.onrender.com/api/thread");
+            const response = await fetch(
+                // "http://localhost:5000/api/thread",
+                `${import.meta.env.VITE_BACKEND_URL}/api/thread`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+           
             const res = await response.json();
+    
             const filteredData = res.map(thread => ({ threadId: thread.threadId, title: thread.title }));
             // console.log(filteredData);
             setAllThreads(filteredData);
@@ -22,8 +32,10 @@ function Sidebar() {
     };
 
     useEffect(() => { //get all thread whenever there is chng in curr threadId
+          if (token) {
         getAllThreads();
-    }, [currThreadId]);
+    }
+    }, [currThreadId, token]);
 
     const createNewChat = () => {
         setNewChat(true);
@@ -38,7 +50,15 @@ function Sidebar() {
         setCurrThreadId(newThreadId);
 
         try {
-            const response = await fetch(`https://queryai-backend.onrender.com/api/thread/${newThreadId}`);
+            const response = await fetch(
+            //    `http://localhost:5000/api/thread/${newThreadId}`,
+            `${import.meta.env.VITE_BACKEND_URL}/api/thread/${newThreadId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
             const res = await response.json();
             console.log(res); //res is in form of arr of objects 
             setPrevChats(res);
@@ -52,7 +72,16 @@ function Sidebar() {
 
     const deleteThread = async (threadId) => {
         try {
-            const response = await fetch(`https://queryai-backend.onrender.com/api/thread/${threadId}`, { method: "DELETE" });
+            const response = await fetch(
+                //    `http://localhost:5000/api/thread/${threadId}`,
+                `${import.meta.env.VITE_BACKEND_URL}/api/thread/${threadId}`,
+                {
+                    method: "DELETE",
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
             const res = await response.json();
             console.log(res);
 

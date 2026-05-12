@@ -1,0 +1,428 @@
+.authOverlay {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    z-index: 999;
+
+    backdrop-filter: blur(10px);
+}
+
+.authOverlay.dark {
+    background: rgba(0, 0, 0, 0.78);
+}
+
+.authOverlay.light {
+    background: linear-gradient(
+        135deg,
+        #f8fafc,
+        #eef2ff
+    );
+}
+
+.authModal {
+    width: 100%;
+    max-width: 360px;
+
+    padding: 26px;
+
+    border-radius: 24px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    animation: fadeIn 0.3s ease;
+}
+
+.authModal.dark {
+    background: #171717;
+
+    border: 1px solid #2a2a2a;
+
+    color: white;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.authModal.light {
+    background: #fcfcfd;
+
+    border: 1px solid #dbe3ea;
+
+    color: #111827;
+
+    box-shadow:
+        0 15px 40px rgba(15, 23, 42, 0.10);
+}
+
+.authHeader {
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+.authHeader h1 {
+    font-size: 2.2rem;
+
+    font-weight: 650;
+
+    line-height: 1.2;
+
+    margin-bottom: 10px;
+
+    letter-spacing: -0.6px;
+}
+
+.authHeader p {
+    font-size: 0.98rem;
+
+    font-weight: 500;
+}
+
+.authModal.light .authHeader h1 {
+    color: #111827;
+}
+
+.authModal.light .authHeader p {
+    color: #6b7280;
+}
+
+.authModal.dark .authHeader h1 {
+    color: #f9fafb;
+}
+
+.authModal.dark .authHeader p {
+    color: #a1a1aa;
+}
+
+.authToggle {
+    display: flex;
+
+    border-radius: 16px;
+
+    padding: 5px;
+}
+
+.authModal.light .authToggle {
+    background: #f1f5f9;
+}
+
+.authModal.dark .authToggle {
+    background: #1f1f22;
+}
+
+.authToggle button {
+    flex: 1;
+
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    background: transparent;
+
+    font-size: 0.98rem;
+
+    font-weight: 600;
+
+    letter-spacing: -0.2px;
+
+    transition: 0.2s ease;
+}
+
+.authModal.light .authToggle button {
+    color: #6b7280;
+}
+
+.authModal.dark .authToggle button {
+    color: #d4d4d8;
+}
+
+.authToggle button:hover {
+    background: rgba(16, 163, 127, 0.08);
+}
+
+.authToggle button.active {
+    background: #10a37f;
+
+    color: white !important;
+}
+
+.authToggle button.active:hover {
+    background: #10a37f;
+}
+
+.authForm {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.authForm input {
+    width: 96%;
+    align-self: center;
+
+    padding: 10px 14px;
+
+    border-radius: 14px;
+
+    border: 1px solid transparent;
+
+    outline: none;
+
+    font-size: 1rem;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.authModal.dark .authForm input {
+    background: #222222;
+
+    border: 1px solid #2f2f2f;
+
+    color: white;
+}
+
+.authModal.light .authForm input {
+    background: #f1f5f9;
+
+    border: 1px solid #e6ebf1;
+
+    color: #111827;
+
+    box-shadow:
+        0 2px 6px rgba(15, 23, 42, 0.045);
+}
+
+.authForm input::placeholder {
+    color: #8b8b8b;
+}
+
+.authModal.light .authForm input::placeholder {
+    color: #6b7280;
+}
+
+.authForm input:focus {
+    border-color: transparent !important;
+
+    box-shadow:
+        0 0 0 3px rgba(16, 163, 127, 0.16) !important;
+
+    outline: none;
+}
+
+.authSubmitBtn {
+    width: 96%;
+
+    align-self: center;
+
+    margin-top: 4px;
+
+    padding: 10px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: #10a37f;
+
+    color: white;
+
+    font-size: 1rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+  box-shadow:
+    0 4px 10px rgba(16, 163, 127, 0.14);
+
+}
+
+.authSubmitBtn:hover {
+    background: #0d8f70;
+
+    transform: translateY(-1px);
+}
+
+.authError {
+    color: #ef4444;
+
+    font-size: 0.9rem;
+
+    text-align: center;
+}
+
+.authSubmitBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnLoader {
+    width: 18px;
+    height: 18px;
+
+    border: 2px solid rgba(255, 255, 255, 0.35);
+
+    border-top-color: white;
+
+    border-radius: 50%;
+
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.authError {
+    color: #ef4444;
+
+    font-size: 0.9rem;
+
+    text-align: center;
+
+    animation: fadeError 0.3s ease;
+}
+
+@keyframes fadeError {
+
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+
+    .authOverlay {
+        padding: 16px;
+    }
+
+    .authModal {
+        max-width: 100%;
+
+        padding: 26px 18px;
+
+        border-radius: 20px;
+    }
+
+    .authHeader h1 {
+        font-size: 2rem;
+    }
+
+    .authHeader p {
+        font-size: 0.9rem;
+    }
+
+    .authToggle button {
+        font-size: 0.92rem;
+
+        padding: 8px 10px;
+    }
+
+    .authForm input {
+        padding: 10px 12px;
+
+        font-size: 0.95rem;
+    }
+
+    .authSubmitBtn {
+        padding: 10px;
+
+        font-size: 0.96rem;
+    }
+}
+.passwordContainer {
+     position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.passwordContainer input {
+    width: 100%;
+}
+
+.passwordInput {
+    padding-right: 42px !important;
+}
+
+.togglePasswordBtn {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+
+    background: transparent;
+    border: none;
+    outline: none;
+
+    padding: 0;
+    margin: 0;
+
+    width: auto;
+    height: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    color: #9ca3af;
+}
+
+.passwordContainer button {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.togglePasswordBtn {
+    opacity: 1 !important;
+    color: #4b5563 !important;
+}
+
+.togglePasswordBtn svg {
+    opacity: 1 !important;
+    stroke: #4b5563 !important;
+}
+
+.authModal.dark .togglePasswordBtn svg {
+    stroke: #d1d5db !important;
+}

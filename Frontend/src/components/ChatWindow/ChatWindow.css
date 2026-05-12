@@ -403,3 +403,12 @@ input:focus {
 .chatWindow.light .modelItem:hover {
     background-color: rgba(0, 0, 0, 0.04);
 }
+
+.userInfo {
+    opacity: 0.7;
+    cursor: default;
+}
+
+.logoutBtn {
+    color: #ef4444;
+}

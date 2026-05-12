@@ -1,9 +1,9 @@
 import "./ChatWindow.css";
-import Chat from "./Chat.jsx";
-import { MyContext } from "./MyContext.jsx";
+import Chat from "../Chat/Chat.jsx";
+import { MyContext } from "../../context/MyContext.jsx";
 import { useContext, useState, useEffect } from "react";
 import { ScaleLoader } from "react-spinners";
-import AboutQueryAI from "./AboutQueryAI.jsx";
+import AboutQueryAI from "../AboutQueryAI/AboutQueryAI.jsx";
 
 
 function ChatWindow() {
@@ -14,7 +14,10 @@ function ChatWindow() {
         currThreadId,
         prevChats, setPrevChats,
         setNewChat, setIsSidebarOpen,
-        theme, setTheme
+        theme, setTheme,
+        token,
+        user,
+        logout,
     } = useContext(MyContext);
 
     const [loading, setLoading] = useState(false);
@@ -31,7 +34,8 @@ function ChatWindow() {
         const options = {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify({ //passing in req body
                 message: prompt,
@@ -40,7 +44,11 @@ function ChatWindow() {
         };
 
         try {
-            const response = await fetch("https://queryai-backend.onrender.com/api/chat", options);
+            const response = await fetch(
+                `${import.meta.env.VITE_BACKEND_URL}/api/chat`,
+                // "http://localhost:5000/api/chat",
+                options
+            );
             const res = await response.json();
             console.log(res);
             setReply(res.reply);
@@ -142,16 +150,30 @@ function ChatWindow() {
             {
                 isOpen &&
                 <div className="dropDown">
+
+                    <div className="dropDownItem userInfo">
+                        {user?.name}
+                    </div>
+
                     <div className="dropDownItem"
                         onClick={() => {
                             setShowAbout(true);
                             setIsOpen(false);
                         }}
-                    >About QueryAI</div>
+                    >
+                        About QueryAI
+                    </div>
 
                     <div className="dropDownItem" onClick={toggleTheme}>
                         Theme{" "}
                         <i className={`fa-solid ${theme === "dark" ? "fa-toggle-off" : "fa-toggle-on"}`}></i>
+                    </div>
+
+                    <div
+                        className="dropDownItem logoutBtn"
+                        onClick={logout}
+                    >
+                        Logout
                     </div>
 
                 </div>
