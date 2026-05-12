@@ -25,16 +25,19 @@ function AboutQueryAI({ onClose }) {
                 <h2>About QueryAI</h2>
 
                 <p className="aboutIntro">
-                    QueryAI is a full-stack AI chat application designed to simulate
-                    real-world conversational systems with persistent, thread-based history.
+                  QueryAI is a full-stack AI-powered chat application designed to simulate real-world conversational systems with secure authentication and persistent user-based chat history.
                 </p>
 
                 <h3>Key Features</h3>
                 <ul>
-                    <li>Thread-based persistent chat history</li>
-                    <li>Real-time AI responses using LLM APIs</li>
+                    <li>Secure JWT-based authentication</li>
+                    <li>User-specific persistent chat history</li>
+                    <li>Real-time AI responses using Groq LLM APIs</li>
+                     <li>Thread-based conversation management</li>
                     <li>Responsive UI (desktop & mobile)</li>
                     <li>Light / Dark theme support</li>
+                    <li>Password visibility toggle</li>
+                    <li>Toast notifications for user actions</li>
                     <li>Keyboard accessibility (Enter, Escape)</li>
                 </ul>
 
@@ -47,7 +50,7 @@ function AboutQueryAI({ onClose }) {
                 </ul>
 
                 <p className="footerText">
-                    Built as a learning-focused project and optimized for interview demonstrations.
+                   Built as a learning-focused project with emphasis on real-world chat application features.
                 </p>
             </div>
         </div>
